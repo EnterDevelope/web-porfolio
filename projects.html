@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 상세</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --primary-blue-dark: #0056b3;
+            --primary-blue-light: #74c0fc;
+            --secondary-gray: #6c757d;
+            --light-bg: #f8f9fa;
+            --dark-bg: #ffffff;
+            --dark-text: #333;
+            --muted-text: #6c757d;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --shadow-color-dark: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+
+        .back-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 123, 255, 0.3);
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, var(--primary-blue-dark), #004085);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-period {
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .project-role {
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-content h4 {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .project-content ul {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .project-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-left: 4px solid var(--primary-blue);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h5 {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--light-bg);
+            color: var(--primary-blue);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .achievement-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .achievement-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .achievement-label {
+            font-size: 0.9rem;
+            color: var(--muted-text);
+        }
+
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .project-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .project-role {
+                margin-top: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">김우현 Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>프로젝트 상세</h1>
+            <p>실제 경험과 성과를 바탕으로 한 프로젝트 포트폴리오</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-5">
+        <div class="container">
+            <!-- 팀스파르타 인턴 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">팀스파르타 인턴</h3>
+                        <p class="project-period">2024.09 ~ 2025.03 (5개월)</p>
+                    </div>
+                    <span class="project-role">PM</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>팀스파르타 내일배움캠프 팀 교육운영파트에서 Flutter 개발 및 창업 교육 프로덕트 담당 PM으로 활동했습니다. 5개월 기수제 프로그램의 2기를 전담하며 1기의 문제를 정의해 전면 개편을 추진했고, 2기 운영과 고도화를 수행했습니다.</p>
+                    
+                    <h4>🎯 핵심 과제</h4>
+                    <p><strong>초반 이탈과 고객 니즈 - 로드맵 적합도 미스매치</strong></p>
+                    <p>이전 기수의 5개월 분량 VOC를 종합하고 이탈 데이터를 분석한 결과 절반 이상이 공통된 VOC 키워드를 지목하고 참여 1~2개월 내 이탈이 발생함을 확인했습니다. 비전공자가 개발 위주 구성에서 흥미를 잃는 것이 원인임을 확인하고 로드맵을 재설계했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>💡 해결 방안</h5>
+                        <p>초기 구간을 창업 맥락에 맞추고 개발 심화 요소를 덜어낸 대신 LLM 활용, 빠른 배포, 테스트, 랜딩페이지 검증 중심으로 개편했습니다.</p>
+                    </div>
+                    
+                    <h4>📊 성과</h4>
+                    <div class="achievement-grid">
+                        <div class="achievement-item">
+                            <div class="achievement-number">15%p</div>
+                            <div class="achievement-label">이탈률 개선</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-number">38.3%p</div>
+                            <div class="achievement-label">평균 출석률 개선</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-number">4.3%p</div>
+                            <div class="achievement-label">결제 전환율 개선</div>
+                        </div>
+                        <div class="achievement-item">
+                            <div class="achievement-number">105%</div>
+                            <div class="achievement-label">신규 모집 증가</div>
+                        </div>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">데이터 분석</span>
+                        <span class="tech-tag">VOC 분석</span>
+                        <span class="tech-tag">프로젝트 관리</span>
+                        <span class="tech-tag">팀 협업</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exam AI -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">Exam AI</h3>
+                        <p class="project-period">2025.07 ~ 현재 진행 중</p>
+                    </div>
+                    <span class="project-role">기획 & 개발</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>개인적인 학습 비효율 문제에서 시작되어, AI 서비스 기획부터 개발, 팀 협업까지 전 과정을 주도하며 '기획과 구현의 연결'에 대한 인사이트를 얻은 경험입니다.</p>
+                    
+                    <h4>🎯 핵심 문제</h4>
+                    <p>LLM을 활용하며 공부했을 때, 매번 반복되는 프롬프트 작성, 대화가 길어지면 발생하는 컨텍스트 유실 문제는 학습의 흐름을 끊는 가장 큰 허들이었습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>강의자료 업로드 시, 자동으로 요약, 퀴즈, 오답노트가 생성되는 '닫힌 학습 루프'를 설계했습니다. 또한 각 요약본을 기반으로 난이도와 문항 수 조절이 가능한 독립적인 퀴즈 기능을 구현했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>🔧 기술적 구현</h5>
+                        <p>LLM의 특성을 고려해 비용 효율성과 응답 속도를 최적화하기 위해 3가지 모델을 혼합 적용했습니다. 데이터 담당 팀원과 핵심 기능인 주관식 퀴즈의 AI 분석 채점을 구현하기 위해, 사용자 답안과 정답, 원문을 함께 AI에 전달하는 데이터 흐름도를 시각화하여 공유했습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">AI/LLM</span>
+                        <span class="tech-tag">데이터베이스</span>
+                        <span class="tech-tag">팀 협업</span>
+                        <span class="tech-tag">기획</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wayfinder -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">Wayfinder</h3>
+                        <p class="project-period">2025.03 ~ 2025.06</p>
+                    </div>
+                    <span class="project-role">PJM & 개발</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>조현병에 대한 사회적 낙인 문제를 데이터로 규명하고, 이를 해결하기 위해 VR과 인터랙티브 스토리텔링을 결합한 인식 개선 게임을 제작한 프로젝트입니다. 학과 우수상인 'Design S award Green'을 수상했습니다.</p>
+                    
+                    <h4>🎯 문제 정의</h4>
+                    <p>정신질환자에 대한 부정적 인식은 사회적으로 깊게 자리잡고 있습니다. 실제로는 2021년 대검찰청 범죄분석에 따르면 정신질환자의 범죄율은 일반인보다 낮습니다. 진짜 문제는 치료 후 1년 내 자살률이 OECD 평균을 크게 상회할 정도로, 사회적 고립이 심각하다는 점이었습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>통계나 이론적 설명보다 당사자의 시선을 체험하는 것이 더 큰 공감을 불러올 수 있다고 판단했습니다. 사용자가 환자의 왜곡된 현실을 직접 체험함으로써 공감과 이해를 얻는 것을 목표로 설정했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>🔧 기술적 구현</h5>
+                        <p>Unity와 C#을 기반으로, Dialogue System for Unity를 활용해 분기형 대사와 선택지를 구현했고, Timeline과 Cinemachine을 통해 컷신과 시네마틱 연출을 설계했습니다. 주요 스크립트(DialogueManager, TimelineDirector)를 직접 작성하며 프로젝트의 안정성을 확보했습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Unity</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">VR</span>
+                        <span class="tech-tag">프로젝트 관리</span>
+                        <span class="tech-tag">팀 리딩</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ID Linker -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">ID Linker</h3>
+                        <p class="project-period">2025.03 ~ 2025.06</p>
+                    </div>
+                    <span class="project-role">데이터 분석 & 기획</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>재학생과 졸업생 간의 교류 단절을 데이터로 확인하고, 이를 해소하는 온라인 네트워크 서비스를 기획한 프로젝트입니다. 데이터 분석, 서비스 기획을 담당해 문제 정의, 데이터 분석, 가설 검증, MVP 범위 설정과 타겟층 반응 검증까지 전 과정을 주도했습니다.</p>
+                    
+                    <h4>📊 데이터 분석</h4>
+                    <p>심층 인터뷰 4명, 설문 32명을 통해 정성/정량 리서치를 수행했습니다. Python 기반으로 전처리와 시각화를 수행하여 전 학년에 걸쳐 졸업생과의 접점이 매우 낮고 학년 간 수직적 교류가 구조적으로 제한되어 있음을 통계적으로 확인했습니다.</p>
+                    
+                    <h4>🎯 핵심 가설</h4>
+                    <p>졸업생과의 교류가 부족하면 소속감이 낮아지고, 이로 인해 진로 명확성도 약화된다. 다양한 변수를 바탕으로 한 상관관계 분석을 통해 소속감이 진로 명확성을 높이는 효과가 졸업생 교류 유무에 따라 크게 달라지는 점화 효과를 확인했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>📈 검증 결과</h5>
+                        <p>랜딩 페이지를 제작해 퍼널을 측정한 결과, CTR 16.29%, 베타테스터 신청 CVR 8%를 확인하여 문제 인식과 해결 제안 간의 정합성, 타겟층의 반응 정도를 간접적으로 확인할 수 있었습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">데이터 분석</span>
+                        <span class="tech-tag">클러스터링</span>
+                        <span class="tech-tag">상관관계 분석</span>
+                        <span class="tech-tag">리서치</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- POPPLE -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">POPPLE</h3>
+                        <p class="project-period">2024.02 ~ 2024.06</p>
+                    </div>
+                    <span class="project-role">기획 & 디자인</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>일상 속에서 감정을 건강하게 관리할 수 있도록 돕는 AI 기반 서비스입니다. 제품/서비스 기획자로 참여해 문제 정의부터 서비스 구조 설계, UXUI 디자인 과정을 맡았습니다.</p>
+                    
+                    <h4>🎯 핵심 문제</h4>
+                    <p>현대인들은 관계와 업무에서 오는 스트레스로 인해 감정을 잘 해소하지 못하는 경우가 많습니다. 기존의 감정 관리 서비스들은 기록 방식이 번거롭거나 맥락이 부족해 꾸준히 사용하기 어렵다는 한계가 있었습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>하드웨어인 Popple Case는 스마트폰 뒷면에 부착하는 케이스 형태로, 광학 센서를 통해 심박 등 간단한 생체 신호를 자동으로 수집합니다. 소프트웨어인 Popple App은 이렇게 수집된 데이터를 AI가 분석해 사용자의 감정 상태를 추론하고, 먼저 대화를 걸어주는 방식으로 설계했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>🎨 사용자 경험</h5>
+                        <p>사용자는 직접 글을 쓰지 않아도 선택지나 음성을 통해 손쉽게 감정을 표현할 수 있습니다. 대화가 끝나면 "상황-생각-감정"을 분리해 보여주는 리포트를 제공해 자기 성찰을 돕고, 여러 AI 캐릭터 중 원하는 말투와 성격을 선택할 수 있게 하여 친근감을 높였습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">UX/UI 디자인</span>
+                        <span class="tech-tag">하드웨어</span>
+                        <span class="tech-tag">AI</span>
+                        <span class="tech-tag">사용자 테스트</span>
+                        <span class="tech-tag">프로토타입</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carmeal -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">Carmeal</h3>
+                        <p class="project-period">2024.02 ~ 2024.06</p>
+                    </div>
+                    <span class="project-role">팀장 & 기획</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>졸업 전공 프로젝트에서 팀장을 맡아 전기차 충전 제품과 서비스를 기획하고, 최종 전시까지 주도했습니다. 전시 현장에서 긍정적인 반응을 얻었고 교내 창업지원단장님으로부터 직접 창업 제안을 받았습니다.</p>
+                    
+                    <h4>🎯 문제 정의</h4>
+                    <p>EV TREND KOREA 2024 조사에 따르면, 전기차 구매를 망설이는 가장 큰 이유(52%)는 '불편한 충전 인프라'였습니다. 전기차 동호회 카페 키워드 크롤링, 카페 회원과의 비대면 인터뷰를 통해 이 문제가 특히 다세대 주택 거주민에게 심화되어 있음을 발견했습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>문제를 단순한 충전기 부족이 아닌, 환경별 맞춤 경험 부재로 정의했습니다. 일명 '집밥'이라고 불리는 주거 환경 내의 충전기 설치가 어려운 빌라촌과 좁고 경사진 밀집 주거 지역 주차 환경에서도 활용 가능한 이동형 공유 충전기 'Carmeal'을 기획했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>🔧 기술적 특징</h5>
+                        <p>4~8kWh 배터리를 기반으로 1시간 충전 시 약 64km 주행이 가능하여, 하루 이틀 통근에 충분한 실용성을 확보했습니다. 제품 설계 단계에서는 공과대학 교수님의 자문을 받아 기술적 타당성을 검증하며 현실성을 높였습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">서비스 기획</span>
+                        <span class="tech-tag">UX 설계</span>
+                        <span class="tech-tag">시장 분석</span>
+                        <span class="tech-tag">팀 리딩</span>
+                        <span class="tech-tag">프레젠테이션</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 영풍문고 산학협력 프로젝트 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">영풍문고 산학협력 프로젝트</h3>
+                        <p class="project-period">2023.09 ~ 2023.12</p>
+                    </div>
+                    <span class="project-role">서비스 기획</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>영풍문고 산학협력 프로젝트를 통해 시장을 파악하고 고객 경험 중심의 온,오프라인 연계 서비스를 설계하는 통합적인 기획에 참여하여 전체 팀 중 3위를 수상하고 장학금을 받았습니다.</p>
+                    
+                    <h4>🎯 핵심 문제</h4>
+                    <p>성인 연간 독서량 4.5권의 위기 속에서, 영풍문고는 브랜드 정체성과 큐레이션 부족이라는 명확한 한계를 안고 있었습니다. 저는 영풍문고의 진짜 경쟁자는 교보문고가 아닌, 고객의 시간을 점유하는 넷플릭스와 유튜브 같은 콘텐츠 플랫폼이라고 재정의했습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>이들과의 시간 뺏기 싸움에서 이기기 위해, 단순히 책을 파는 공간을 넘어 독서 경험 자체를 새롭게 설계하는 것을 목표로 삼았습니다. '즐길 수 있는 서점'이라는 컨셉 아래, 독서 경험 수준에 따라 사용자를 Light/Heavy User로 나누어 '맛보다(책과 친해지기)-누리다(체험하기)-빠지다(몰입하기)'로 이어지는 3단계 고객 여정을 구체화했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>🎨 서비스 설계</h5>
+                        <p>'맛보다' 단계에서는 심리테스트 형식을 차용한 AI 챗봇 '영둥이'를 통한 온라인 큐레이션을 제안했습니다. '누리다' 단계에서는 책 속 한 문장으로 새로운 장르를 발견하게 하는 감성적 전시 공간과 오디오북 회사인 '윌라'와의 제휴 공간을 기획했습니다. '빠지다' 단계에서는 멤버십 기반의 프라이빗 독서 공간을 설계했습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">서비스 기획</span>
+                        <span class="tech-tag">고객 여정 설계</span>
+                        <span class="tech-tag">온오프라인 연계</span>
+                        <span class="tech-tag">AI 챗봇</span>
+                        <span class="tech-tag">프레젠테이션</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 핸드허그 산학협력 프로젝트 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">핸드허그 산학협력 프로젝트</h3>
+                        <p class="project-period">2023.09 ~ 2023.12</p>
+                    </div>
+                    <span class="project-role">오프라인 고객 경험</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>핸드허그의 캐릭터 IP 커머스 플랫폼 JellyCrew를 대상으로, 메가 IP 확보와 소비자 경험 개선을 동시에 달성하기 위한 산학협력 프로젝트를 수행했습니다. 팔로워 중심 평가의 한계를 보완하고, 오프라인 매출을 확장할 수 있는 실행안을 마련하는 것이 큰 방향이었습니다.</p>
+                    
+                    <h4>🎯 핵심 문제</h4>
+                    <p>양면 시장 특성상 크리에이터 발굴과 소비자 경험이 함께 강화되어야 지속 성장이 가능합니다. 내부 데이터 분석 결과 신규 입점은 늘었지만 정산액 성장은 제한적이었고, 이는 팔로워 비중이 큰 기존 평가 모델이 잠재력 있는 IP를 걸러내지 못한 탓이라고 보았습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>기존 유통 지수를 제외하고 디자인 지수를 단순화하는 대신, 메시지와 스토리라인을 반영하는 콘텐츠성 지표를 도입한 크리에이터 및 IP 평가 모델을 제안했습니다. 젠틀몬스터와 아모레 성수 케이스를 바탕으로 젤리크루 아케이드 컨셉 스토어를 제안했습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>📊 KPI와 OKR</h5>
+                        <p>매출 지속률, 오프라인 방문자의 온라인 전환율, 신규 발굴 IP의 성장률을 핵심 KPI로 설정했고, 분기별 OKR로 실행 우선순위와 목표치를 명확히 했습니다. 시뮬레이션 결과 기존엔 B등급이던 잠재 IP '에엥이'가 A등급으로 재평가되는 등, 성장성이 높은 IP 선점 가능성을 확인했습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">양면 시장 분석</span>
+                        <span class="tech-tag">KPI 설계</span>
+                        <span class="tech-tag">오프라인 경험</span>
+                        <span class="tech-tag">IP 평가 모델</span>
+                        <span class="tech-tag">데이터 분석</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 네모 -->
+            <div class="project-card">
+                <div class="project-header">
+                    <div>
+                        <h3 class="project-title">네모 (NAIMO)</h3>
+                        <p class="project-period">2021.12 ~ 2022.06</p>
+                    </div>
+                    <span class="project-role">팀장 & PO</span>
+                </div>
+                
+                <div class="project-content">
+                    <h4>📋 프로젝트 개요</h4>
+                    <p>군 복무 중, IT에 관심이 있던 소대원 2명을 모아 실제 서비스를 기획하고자 했습니다. 네일아트 시장의 고질적인 문제를 해결하는 O2O 플랫폼을 목표로 했으며, 팀장 겸 PO로 참여해 문제 정의부터 UX 설계, 사업계획 수립, 프로토타입 제작과 군 창업경진대회 출전까지 전 과정을 주도했습니다.</p>
+                    
+                    <h4>🎯 문제 정의</h4>
+                    <p>처음 문제의식을 느낀 것은 주변 지인들의 경험담과 온라인 후기에서였습니다. "원하는 디자인을 찾기 힘들다", "가격이 제각각이다", "예약은 전화로만 가능하다"는 불편이 반복적으로 언급되었습니다. 20대 여성(대학생/직장인)을 대상으로 97명 설문 데이터를 수집하여 불투명한 가격, 불편한 예약, 파편화된 정보 접근이 주요 Pain Point임을 확인했습니다.</p>
+                    
+                    <h4>💡 솔루션</h4>
+                    <p>소비자와 아티스트 양측의 문제를 동시에 해결하는 양면 플랫폼을 제안했습니다. 소비자에게는 투명한 가격 비교, 간편한 예약, 디자인 검색 기능을 제공했고, 아티스트에게는 고객 관리와 매출 통계 기능을 제안했습니다. 특히, '견적 요청' 기능을 통해 사용자가 디자인에 대한 설명을 올리면 다수 아티스트가 가격과 일정을 제안하는 구조를 만들었습니다.</p>
+                    
+                    <div class="highlight-box">
+                        <h5>🚀 사업화 전략</h5>
+                        <p>제한된 리소스를 고려해 초기 타깃은 서울 대학가로 한정했고, Appstore에 먼저 출시해 빠른 학습과 확산을 노렸습니다. Flutter와 Firebase로 개발 방식을 설정하고, 인스타그램 채널에서 디자인들을 수동으로 아카이빙해서 사용자를 모으는 전략을 수립했습니다. '네일 제거 구독 서비스(월 9,900원)' 모델을 기획해 사용자의 재방문과 충성도를 높이는 방식을 구상했습니다.</p>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">O2O 플랫폼</span>
+                        <span class="tech-tag">Flutter</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">사업계획서</span>
+                        <span class="tech-tag">팀 리딩</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Back Button -->
+    <a href="index.html" class="back-btn">
+        <i class="ion-ios-arrow-back"></i> 메인으로 돌아가기
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p>&copy; 2024 김우현. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
