@@ -6,6 +6,15 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9JETLDD62P"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		gtag('config', 'G-9JETLDD62P');
+	</script>
+
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
 	<link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
@@ -1114,7 +1123,8 @@
 							</p>
 							<p><a target="_blank"
 									href="https://github.com/EnterDevelope/web-porfolio/raw/main/%EA%B9%80%EC%9A%B0%ED%98%84_%ED%8F%AC%ED%8F%B4.pdf"
-									class="btn btn-primary py-3 px-3" aria-label="포트폴리오 파일 다운로드">PDF 다운받기</a></p>
+									class="btn btn-primary py-3 px-3" aria-label="포트폴리오 파일 다운로드"
+									data-ga-event="download_portfolio" data-ga-category="conversion" data-ga-label="포트폴리오 PDF">PDF 다운받기</a></p>
 						</div>
 					</div>
 				</div>
@@ -1168,12 +1178,12 @@
 				<div class="col-md-3">
 					<nav id="navi">
 						<ul>
-							<li><a href="#page-1">Education</a></li>
-							<li><a href="#page-2">Experience</a></li>
-							<li><a href="#page-3">Skills</a></li>
-							<li><a href="#page-4">Internship</a></li>
-							<li><a href="#page-5">Projects</a></li>
-							<li><a href="javascript:void(0)" class="external-link" onclick="window.location.href='projects.html';">프로젝트 상세</a></li>
+							<li><a href="#page-1" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Education">Education</a></li>
+							<li><a href="#page-2" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Experience">Experience</a></li>
+							<li><a href="#page-3" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Skills">Skills</a></li>
+							<li><a href="#page-4" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Internship">Internship</a></li>
+							<li><a href="#page-5" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Projects">Projects</a></li>
+							<li><a href="javascript:void(0)" class="external-link" onclick="window.location.href='projects.html';" data-ga-event="view_projects_page" data-ga-category="navigation" data-ga-label="프로젝트 상세">프로젝트 상세</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -1210,10 +1220,10 @@
 								</p>
 								<p><a target="_blank"
 									href="https://d.exhibition.yonsei.ac.kr/"
-									class="btn btn-primary">통합디자인학과 과제전 링크</a>
+									class="btn btn-primary" data-ga-event="click_external_link" data-ga-category="navigation" data-ga-label="통합디자인학과 과제전">통합디자인학과 과제전 링크</a>
 									<a target="_blank"
 									href="http://d.yonsei.ac.kr/"
-									class="btn btn-primary">통합디자인학과 졸업전시 링크</a>
+									class="btn btn-primary" data-ga-event="click_external_link" data-ga-category="navigation" data-ga-label="통합디자인학과 졸업전시">통합디자인학과 졸업전시 링크</a>
 								</p>
 							</div>
 						</div>
@@ -1418,7 +1428,7 @@
 								<div class="mb-2"><span class="badge badge-dark mr-2">Metrics</span> 이탈 -15%p(초기), 출석 +38.3%p, 결제 +4.3%p, 매출 2x, NPS +327%, 3기 모집 36~105%↑</div>
 								<div class="mb-2"><span class="badge badge-dark mr-2">Evidence</span> 평가 기준표, 사전캠프 커리큘럼, 랜딩 메시지 개편안, VOC 요약본</div>
 								<div class="mt-3">
-									<a class="btn btn-sm btn-outline-primary" data-toggle="collapse" href="#ts-intern-details" role="button" aria-expanded="false" aria-controls="ts-intern-details" aria-label="팀스파르타 인턴 상세 내용 토글">자세히 보기</a>
+									<a class="btn btn-sm btn-outline-primary" data-toggle="collapse" href="#ts-intern-details" role="button" aria-expanded="false" aria-controls="ts-intern-details" aria-label="팀스파르타 인턴 상세 내용 토글" data-ga-event="toggle_project_detail" data-ga-category="engagement" data-ga-label="팀스파르타 인턴">자세히 보기</a>
 									<div class="collapse mt-3" id="ts-intern-details">
 										<div class="card card-body">
 											<h3 class="h5 mb-2">역할과 맥락</h3>
@@ -1473,9 +1483,9 @@
 							<span class="date">2021.12-2022.06</span>
 							<div class="d-flex">
 								<h2>군 창업경진대회</h2>
-								<div class="ml-2"><a class="btn btn-outline-secondary" target="_blank" aria-label="군 창업경진대회 관련 PDF 다운로드"
+								<div class="ml-2">								<a class="btn btn-outline-secondary" target="_blank" aria-label="군 창업경진대회 관련 PDF 다운로드"
 									class="btn btn-outline-secondary"
-									href="https://github.com/EnterDevelope/web-porfolio/raw/1a3b3a2977f3d1e65dcf6670cb617e377d788e5e/%EC%B0%BD%EC%97%85%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C%20%EC%A0%91%EC%88%98%20%EB%AC%B8%EC%84%9C.pdf">PDF 다운로드</a>
+									href="https://github.com/EnterDevelope/web-porfolio/raw/1a3b3a2977f3d1e65dcf6670cb617e377d788e5e/%EC%B0%BD%EC%97%85%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C%20%EC%A0%91%EC%88%98%20%EB%AC%B8%EC%84%9C.pdf" data-ga-event="download_pdf" data-ga-category="conversion" data-ga-label="군 창업경진대회">PDF 다운로드</a>
 								</div>
 							</div>
 							<span class="position">네일의 모든 것, 네모</span>
@@ -1495,7 +1505,7 @@
 							<h2>(주)핸드허그 사의 'JellyCrew'와의 컨설팅 산학협력
 								<a class="btn btn-outline-secondary ml-2" target="_blank" aria-label="핸드허그 젤리크루 프로젝트 PDF 다운로드"
 									class="btn btn-outline-secondary"
-									href="https://github.com/EnterDevelope/web-porfolio/raw/a2c4b630ec3910e4fcb0d8cc01cb882e39f36bb0/jellycrew_final.pdf">PDF 다운로드</a>
+									href="https://github.com/EnterDevelope/web-porfolio/raw/a2c4b630ec3910e4fcb0d8cc01cb882e39f36bb0/jellycrew_final.pdf" data-ga-event="download_pdf" data-ga-category="conversion" data-ga-label="핸드허그 젤리크루">PDF 다운로드</a>
 							</h2>
 							<span class="position"></span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 입점은 늘었으나 매출 성장이 정체, 팔로워 중심 평가의 한계</div>
@@ -1514,7 +1524,7 @@
 							<h2>(주)영풍문고 사와의 산학협력 프로젝트
 								<a class="btn btn-outline-secondary ml-2" target="_blank" aria-label="영풍문고 산학협력 프로젝트 PDF 다운로드"
 									class="btn btn-outline-secondary"
-									href="https://github.com/EnterDevelope/web-porfolio/raw/23c0e5accca2c8884bc8c629f10b801bee921f32/%EC%98%81%ED%92%8D%EB%AC%B8%EA%B3%A0_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.pdf">PDF 다운로드</a>
+									href="https://github.com/EnterDevelope/web-porfolio/raw/23c0e5accca2c8884bc8c629f10b801bee921f32/%EC%98%81%ED%92%8D%EB%AC%B8%EA%B3%A0_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8.pdf" data-ga-event="download_pdf" data-ga-category="conversion" data-ga-label="영풍문고">PDF 다운로드</a>
 							</h2>
 							<span class="position"></span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 방문·구매 전환 저하, 브랜드 정체성 약화</div>
@@ -1533,7 +1543,7 @@
 							<h2>졸업 프로젝트 : POPPLE
 								<a class="btn btn-primary ml-2" target="_blank" aria-label="POPPLE 프로젝트 상세 페이지 이동"
 									class="btn btn-outline-secondary"
-									href="http://d.yonsei.ac.kr/2024/portfolio/p10/">상세내용 보기</a>
+									href="http://d.yonsei.ac.kr/2024/portfolio/p10/" data-ga-event="click_external_link" data-ga-category="navigation" data-ga-label="POPPLE 프로젝트">상세내용 보기</a>
 							</h2>
 							<span class="position">학과 졸업 프로젝트</span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 감정 기록 번거로움과 맥락 부족으로 지속 사용 어려움</div>
@@ -1556,7 +1566,7 @@
 							<h2>졸업 프로젝트 : Carmeal
 								<a class="btn btn-primary ml-2" target="_blank" aria-label="Carmeal 프로젝트 상세 페이지 이동"
 									class="btn btn-outline-secondary"
-									href="http://d.yonsei.ac.kr/2024/portfolio/p17/">상세내용 보기</a>
+									href="http://d.yonsei.ac.kr/2024/portfolio/p17/" data-ga-event="click_external_link" data-ga-category="navigation" data-ga-label="Carmeal 프로젝트">상세내용 보기</a>
 							</h2>
 							<span class="position">학과 졸업 프로젝트</span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 다세대 주거지의 충전 인프라 격차로 인한 이용 장벽</div>
@@ -1578,7 +1588,7 @@
 							<h2>Wayfinder
 								<a class="btn btn-primary ml-2" target="_blank" aria-label="Wayfinder 프로젝트 상세 페이지 이동"
 									class="btn btn-outline-secondary"
-									href="https://d.exhibition.yonsei.ac.kr/bbs/board.php?bo_table=2025_IMD&wr_id=1">상세내용 보기</a>
+									href="https://d.exhibition.yonsei.ac.kr/bbs/board.php?bo_table=2025_IMD&wr_id=1" data-ga-event="click_external_link" data-ga-category="navigation" data-ga-label="Wayfinder 프로젝트">상세내용 보기</a>
 							</h2>
 							<span class="position">학과 우수상 수상 (Design S award Green)</span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 조현병에 대한 편견·낙인, 이해 부족</div>
@@ -1790,7 +1800,7 @@
 						</div>
 						<div>
 							<h3 class="mb-4">Contact Number</h3>
-							<p><a href="tel://1234567920">+82 010 4127 6409</a></p>
+							<p><a href="tel://1234567920" data-ga-event="contact_action" data-ga-category="conversion" data-ga-label="전화번호">+82 010 4127 6409</a></p>
 						</div>
 					</div>
 				</div>
@@ -1801,7 +1811,7 @@
 						</div>
 						<div>
 							<h3 class="mb-4">Email Address</h3>
-							<p><a href="mailto:info@yoursite.com">socc2369@naver.com</a></p>
+							<p><a href="mailto:info@yoursite.com" data-ga-event="contact_action" data-ga-category="conversion" data-ga-label="이메일">socc2369@naver.com</a></p>
 						</div>
 					</div>
 				</div>
@@ -1864,6 +1874,7 @@
 	<script src="js/scrollax.min.js"></script>
 
 	<script src="js/main.js"></script>
+	<script src="js/ga4-tracking.js"></script>
 	
 	<script>
 		// 스크롤 애니메이션
@@ -2272,19 +2283,19 @@
 
 	<!-- Floating Action Buttons -->
 	<div class="floating-buttons">
-		<button class="floating-btn analysis-btn" onclick="showPMAnalysis()" aria-label="PM 직무적합도 분석 보기">
+		<button class="floating-btn analysis-btn" onclick="showPMAnalysis()" aria-label="PM 직무적합도 분석 보기" data-ga-event="view_pm_analysis" data-ga-category="engagement" data-ga-label="PM 분석 모달">
 			<span class="ion-ios-analytics"></span>
 			<span class="btn-text">AI 직무적합 분석</span>
 		</button>
-		<a href="https://github.com/EnterDevelope/web-porfolio/raw/main/%EC%84%B1%ED%96%A5%EB%B6%84%EC%84%9D_%EA%B9%80%EC%9A%B0%ED%98%84.pdf" class="floating-btn document-btn" aria-label="성향분석 문서 다운로드" download="성향분석_김우현.pdf">
+		<a href="https://github.com/EnterDevelope/web-porfolio/raw/main/%EC%84%B1%ED%96%A5%EB%B6%84%EC%84%9D_%EA%B9%80%EC%9A%B0%ED%98%84.pdf" class="floating-btn document-btn" aria-label="성향분석 문서 다운로드" download="성향분석_김우현.pdf" data-ga-event="download_personality" data-ga-category="conversion" data-ga-label="성향분석 문서">
 			<span class="ion-ios-document"></span>
 			<span class="btn-text">성향분석 다운받기</span>
 		</a>
-		<a href="mailto:socc2369@naver.com?subject=%5B문서%20요청%5D%20포트폴리오%20자료" class="floating-btn email-btn" aria-label="문서 요청 이메일 보내기">
+		<a href="mailto:socc2369@naver.com?subject=%5B문서%20요청%5D%20포트폴리오%20자료" class="floating-btn email-btn" aria-label="문서 요청 이메일 보내기" data-ga-event="contact_action" data-ga-category="conversion" data-ga-label="이메일 문의">
 			<span class="ion-ios-mail"></span>
 			<span class="btn-text">E-mail</span>
 		</a>
-		<a href="#contact-section" class="floating-btn contact-btn" aria-label="시연 요청 연락하기">
+		<a href="#contact-section" class="floating-btn contact-btn" aria-label="시연 요청 연락하기" data-ga-event="contact_action" data-ga-category="conversion" data-ga-label="Contact 섹션">
 			<span class="ion-ios-call"></span>
 			<span class="btn-text">Contact</span>
 		</a>
