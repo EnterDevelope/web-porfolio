@@ -1589,6 +1589,8 @@
 								<a class="btn btn-primary ml-2" target="_blank" aria-label="Wayfinder 프로젝트 상세 페이지 이동"
 									class="btn btn-outline-secondary"
 									href="https://d.exhibition.yonsei.ac.kr/bbs/board.php?bo_table=2025_IMD&wr_id=1" data-ga-event="click_external_link" data-ga-category="navigation" data-ga-label="Wayfinder 프로젝트">상세내용 보기</a>
+								<a class="btn btn-outline-secondary ml-2" target="_blank" aria-label="Wayfinder PDF 다운로드"
+									href="https://github.com/EnterDevelope/web-porfolio/raw/main/wayfinder.pdf">PDF 다운로드</a>
 							</h2>
 							<span class="position">학과 우수상 수상 (Design S award Green)</span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 조현병에 대한 편견·낙인, 이해 부족</div>
@@ -1603,7 +1605,12 @@
 						</div>
 						<div class="text pl-3">
 							<span class="date">2025.03-2025.06</span>
-							<h2>ID Linker</h2>
+							<h2>ID Linker
+								<a class="btn btn-outline-secondary ml-2" target="_blank" aria-label="ID Linker 보고서 PDF 다운로드"
+									href="https://github.com/EnterDevelope/web-porfolio/raw/main/IDLinker_보고서.pdf">보고서</a>
+								<a class="btn btn-outline-secondary ml-2" target="_blank" aria-label="ID Linker 발표자료 PDF 다운로드"
+									href="https://github.com/EnterDevelope/web-porfolio/raw/main/IDLinker_발표자료.pdf">발표자료</a>
+							</h2>
 							<span class="position">데이터기반통합디자인리서치 수업 프로젝트</span>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Problem</span> 재학생-졸업생 교류 단절로 정보 접근·소속감 저하</div>
 							<div class="mb-2"><span class="badge badge-dark mr-2">Actions</span> 인터뷰+32명 설문, 상관·클러스터 분석(고립형/방황자/선도자) 도출, 핵심 기능 정의</div>
@@ -2232,7 +2239,8 @@
 			improveAccessibility();
 		}
 		
-		// PM 적합도 분석 모달
+		// PM 적합도 분석 모달 - 비활성화
+		/*
 		function showPMAnalysis() {
 			const modal = document.getElementById('pm-analysis-modal');
 			
@@ -2273,6 +2281,7 @@
 				}
 			}
 		});
+		*/
 		
 		// 페이지 로드 시 초기화
 		document.addEventListener('DOMContentLoaded', function() {
@@ -2283,14 +2292,20 @@
 
 	<!-- Floating Action Buttons -->
 	<div class="floating-buttons">
-		<button class="floating-btn analysis-btn" onclick="showPMAnalysis()" aria-label="PM 직무적합도 분석 보기" data-ga-event="view_pm_analysis" data-ga-category="engagement" data-ga-label="PM 분석 모달">
+		<!-- AI 직무적합 분석 버튼 - 비활성화 -->
+		<!--
+		<button class="floating-btn analysis-btn" onclick="showPMAnalysis()" aria-label="PM 직무적합도 분석 보기">
 			<span class="ion-ios-analytics"></span>
 			<span class="btn-text">AI 직무적합 분석</span>
 		</button>
-		<a href="https://github.com/EnterDevelope/web-porfolio/raw/main/%EC%84%B1%ED%96%A5%EB%B6%84%EC%84%9D_%EA%B9%80%EC%9A%B0%ED%98%84.pdf" class="floating-btn document-btn" aria-label="성향분석 문서 다운로드" download="성향분석_김우현.pdf" data-ga-event="download_personality" data-ga-category="conversion" data-ga-label="성향분석 문서">
+		-->
+		<!-- 성향분석 다운받기 버튼 - 비활성화 -->
+		<!--
+		<a href="https://github.com/EnterDevelope/web-porfolio/raw/main/%EC%84%B1%ED%96%A5%EB%B6%84%EC%84%9D_%EA%B9%80%EC%9A%B0%ED%98%84.pdf" class="floating-btn document-btn" aria-label="성향분석 문서 다운로드" download="성향분석_김우현.pdf">
 			<span class="ion-ios-document"></span>
 			<span class="btn-text">성향분석 다운받기</span>
 		</a>
+		-->
 		<a href="mailto:socc2369@naver.com?subject=%5B문서%20요청%5D%20포트폴리오%20자료" class="floating-btn email-btn" aria-label="문서 요청 이메일 보내기" data-ga-event="contact_action" data-ga-category="conversion" data-ga-label="이메일 문의">
 			<span class="ion-ios-mail"></span>
 			<span class="btn-text">E-mail</span>
@@ -2301,7 +2316,8 @@
 		</a>
 	</div>
 
-	<!-- PM 적합도 분석 모달 -->
+	<!-- PM 적합도 분석 모달 - 비활성화 -->
+	<!--
 	<div id="pm-analysis-modal">
 		<div class="pm-modal-content">
 			<div class="modal-header">
@@ -2380,6 +2396,7 @@
 			</div>
 		</div>
 	</div>
+	-->
 
 </body>
 
