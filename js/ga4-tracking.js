@@ -1,5 +1,5 @@
 /**
- * GA4 추적 스크립트
+ * GA4 & Amplitude 추적 스크립트
  * 포트폴리오 웹사이트의 사용자 행동을 추적합니다.
  */
 
@@ -21,19 +21,39 @@ class GA4Tracker {
     }
 
     setupTracking() {
+        // 페이지 로드 이벤트
+        this.trackPageView();
+        
+        // 스크롤 관련
         this.trackScrollDepth();
         this.trackSectionViews();
+        this.trackProjectDetailSections();
+        
+        // 클릭 및 상호작용
         this.trackClicks();
-        this.trackFormSubmissions();
-        this.trackVideoPlays();
-        this.trackModalInteractions();
+        this.trackNavigation();
+        this.trackContactActions();
+        this.trackProjectPageNavigation();
+        this.trackBackNavigation();
         this.trackExternalLinks();
         this.trackPDFDownloads();
+        this.trackProjectCardHover();
+        this.trackProjectCardClicks();
+        
+        // 폼 및 미디어
+        this.trackFormSubmissions();
+        this.trackVideoPlays();
+        this.trackImagePopups();
+        
+        // 모달 및 기타
+        this.trackModalInteractions();
         this.trackProjectEngagement();
+        this.trackSmoothScroll();
     }
 
-    // GA4 이벤트 전송 헬퍼 함수
+    // GA4 & Amplitude 이벤트 전송 헬퍼 함수
     trackEvent(eventName, parameters = {}) {
+        // GA4 이벤트 전송
         if (typeof gtag !== 'undefined') {
             gtag('event', eventName, {
                 event_category: parameters.category || 'engagement',
@@ -41,6 +61,44 @@ class GA4Tracker {
                 value: parameters.value || 0,
                 ...parameters
             });
+        }
+
+        // Amplitude 이벤트 전송 (초기화 대기)
+        const sendAmplitudeEvent = () => {
+            if (typeof amplitude !== 'undefined' && amplitude.getInstance) {
+                try {
+                    const amplitudeInstance = amplitude.getInstance();
+                    if (amplitudeInstance) {
+                        const eventProperties = {
+                            category: parameters.category || 'engagement',
+                            label: parameters.label || '',
+                            value: parameters.value || 0,
+                            page_url: window.location.href,
+                            page_title: document.title,
+                            ...parameters
+                        };
+                        amplitudeInstance.logEvent(eventName, eventProperties);
+                    }
+                } catch (error) {
+                    console.warn('Amplitude event tracking error:', error);
+                }
+            }
+        };
+
+        // Amplitude 초기화 대기 (최대 3초)
+        if (typeof amplitude === 'undefined') {
+            let attempts = 0;
+            const checkAmplitude = setInterval(() => {
+                attempts++;
+                if (typeof amplitude !== 'undefined' || attempts > 30) {
+                    clearInterval(checkAmplitude);
+                    if (typeof amplitude !== 'undefined') {
+                        sendAmplitudeEvent();
+                    }
+                }
+            }, 100);
+        } else {
+            sendAmplitudeEvent();
         }
     }
 
@@ -337,7 +395,7 @@ class GA4Tracker {
 
     // 프로젝트 카드 호버 추적
     trackProjectCardHover() {
-        const projectCards = document.querySelectorAll('.project-card');
+        const projectCards = document.querySelectorAll('.project-card, .resume-wrap');
         projectCards.forEach(card => {
             let hoverStartTime = null;
             
@@ -349,14 +407,105 @@ class GA4Tracker {
                 if (hoverStartTime) {
                     const hoverDuration = Date.now() - hoverStartTime;
                     if (hoverDuration > 1000) { // 1초 이상 호버한 경우만 추적
+                        const title = card.querySelector('h2, h3, .project-title')?.textContent || 'project';
                         this.trackEvent('hover_project_card', {
                             category: 'engagement',
-                            label: card.querySelector('h3')?.textContent || 'project',
+                            label: title.trim(),
                             value: Math.round(hoverDuration / 1000)
                         });
                     }
                 }
             });
+        });
+    }
+
+    // 페이지 뷰 추적
+    trackPageView() {
+        this.trackEvent('page_view', {
+            category: 'navigation',
+            label: document.title,
+            page_path: window.location.pathname,
+            page_url: window.location.href
+        });
+    }
+
+    // 프로젝트 카드 클릭 추적
+    trackProjectCardClicks() {
+        const projectCards = document.querySelectorAll('.project-card, .resume-wrap');
+        projectCards.forEach(card => {
+            card.addEventListener('click', (event) => {
+                // 버튼이나 링크 클릭은 제외
+                if (event.target.closest('a, button')) {
+                    return;
+                }
+                
+                const title = card.querySelector('h2, h3, .project-title')?.textContent || 'project';
+                const projectId = card.id || '';
+                
+                this.trackEvent('click_project_card', {
+                    category: 'engagement',
+                    label: title.trim(),
+                    project_id: projectId
+                });
+            });
+        });
+    }
+
+    // 이미지 팝업 추적
+    trackImagePopups() {
+        // Magnific Popup 추적
+        document.addEventListener('click', (event) => {
+            const popupTrigger = event.target.closest('.image-popup, .popup-youtube, .popup-vimeo');
+            if (popupTrigger) {
+                this.trackEvent('open_image_popup', {
+                    category: 'engagement',
+                    label: popupTrigger.href || popupTrigger.getAttribute('data-src') || 'image'
+                });
+            }
+        });
+    }
+
+    // 부드러운 스크롤 네비게이션 추적
+    trackSmoothScroll() {
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('a[href^="#"]');
+            if (link && link.getAttribute('href') !== '#') {
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    this.trackEvent('smooth_scroll', {
+                        category: 'navigation',
+                        label: targetId,
+                        section_name: targetElement.getAttribute('data-section-name') || targetId
+                    });
+                }
+            }
+        });
+    }
+
+    // 프로젝트 상세 페이지 섹션 뷰 추적
+    trackProjectDetailSections() {
+        const projectSections = document.querySelectorAll('.project-card[id]');
+        if (projectSections.length === 0) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const projectId = entry.target.id;
+                    const projectTitle = entry.target.querySelector('.project-title, h3')?.textContent || projectId;
+                    
+                    this.trackEvent('view_project_detail', {
+                        category: 'engagement',
+                        label: projectTitle.trim(),
+                        project_id: projectId
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        projectSections.forEach(section => {
+            observer.observe(section);
         });
     }
 }

@@ -13,6 +13,20 @@
         gtag('js', new Date());
         gtag('config', 'G-9JETLDD62P');
     </script>
+
+    <!-- Amplitude -->
+    <script src="https://cdn.amplitude.com/script/1b2fd6ae0434f581819316b4b44b0275.js"></script>
+    <script>
+        if (typeof amplitude !== 'undefined') {
+            if (typeof window.sessionReplay !== 'undefined' && window.sessionReplay.plugin) {
+                amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+            }
+            amplitude.init('1b2fd6ae0434f581819316b4b44b0275', {
+                "fetchRemoteConfig": true,
+                "autocapture": true
+            });
+        }
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css">
