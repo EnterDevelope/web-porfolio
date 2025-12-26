@@ -215,12 +215,39 @@
 			display: flex;
 			justify-content: flex-end;
 			width: 100%;
+			gap: 10px;
+			flex-wrap: wrap;
 		}
 
 		#page-4 .internship-card-actions .btn {
 			border-radius: 9999px;
 			font-weight: 700;
 			padding: 10px 14px;
+		}
+
+		/* Hire-me 배너: 화면 비율에 따라 텍스트가 오버플로우되지 않도록 */
+		.ftco-hireme h2 {
+			max-width: 100%;
+			white-space: normal;
+			overflow-wrap: anywhere;
+			word-break: keep-all;
+			text-align: center;
+			line-height: 1.2;
+		}
+
+		@media (max-width: 768px) {
+			.ftco-hireme h2 {
+				font-size: 1.8rem;
+			}
+		}
+
+		/* Contact 카드: 이메일/핸들 등 긴 텍스트가 잘리거나 정렬이 깨지지 않도록 */
+		#contact-section .contact-info a {
+			display: inline-block;
+			max-width: 100%;
+			overflow-wrap: anywhere;
+			word-break: break-word;
+			text-align: center;
 		}
 
 		/* Projects: 요약 그리드 */
@@ -1625,6 +1652,15 @@
 							data-ga-label="팀스파르타 인턴 상세 보기">
 							인턴 과정 상세 보기
 						</a>
+						<a target="_blank"
+							href="https://github.com/EnterDevelope/web-porfolio/raw/main/%EA%B9%80%EC%9A%B0%ED%98%84_%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4%20%282%29.pdf"
+							class="btn btn-outline-secondary"
+							aria-label="포트폴리오 파일 다운로드"
+							data-ga-event="download_portfolio"
+							data-ga-category="conversion"
+							data-ga-label="포트폴리오 PDF (Internship 카드)">
+							포트폴리오 다운받기
+						</a>
 					</div>
 				</div>
 			</div>
@@ -1634,7 +1670,7 @@
 			<h2 id="projects-section" class="heading">Projects</h2>
 
 			<div class="projects-summary-header">
-				<p class="text-muted mb-0">메인에서는 요약만 확인하고, 상세는 프로젝트 페이지에서 확인할 수 있어요.</p>
+				<p class="text-muted mb-0">상세한 프로젝트 내용 및 동영상은 상세 페이지에서 확인해주세요</p>
 				<a href="projects.html"
 					class="btn btn-primary"
 					aria-label="프로젝트 상세 페이지로 이동"
@@ -1654,7 +1690,7 @@
 				<div class="text pl-3">
 					<span class="date">2025.07-현재</span>
 					<h2>Exam AI</h2>
-					<span class="position">기획 & 개발 (Full Stack)</span>
+					<span class="position">기획 & 개발 (Cursor, LLM 서비스)</span>
 					<div class="mt-2">
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Context</span>
@@ -1662,7 +1698,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>'요약-퀴즈-오답' 자동화 루프 설계, 비용/속도 최적화를 위한 3가지 LLM 하이브리드 모델 구현</span>
+							<span>학습 웹서비스 MVP 기획·구현(자료 업로드→요약·퀴즈·오답노트 자동 생성), 3-모델 하이브리드로 비용·속도 최적화</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1694,7 +1730,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>당사자 시점의 VR 인터랙티브 스토리텔링 구현, 분기형 대사 시스템 및 시네마틱 연출 개발</span>
+							<span>Unity 기반 VR 인터랙티브 게임 제작(분기 대사/선택지, 컷신·시네마틱 연출), 체험 흐름 중심 스토리텔링 구현</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1726,7 +1762,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>설문/인터뷰 데이터의 클러스터링 및 상관관계 분석, '소속감-진로 명확성' 가설 검증, 랜딩 페이지 실험</span>
+							<span>졸업생-재학생 연결 서비스 랜딩페이지 제작, 리서치/분석 기반 가설 검증(세분화·상관관계), 퍼널 측정 실험으로 수요 검증</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1757,7 +1793,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>생체 데이터 기반 AI 선제 대화 UX 설계, '상황-생각-감정' 분리 리포트 기획</span>
+							<span>AI 감정 케어 UX 설계(선제 대화 플로우), ‘상황-생각-감정’ 리포트/캐릭터 선택형 상호작용 프로토타입 구성</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1783,7 +1819,7 @@
 					<h2>졸업 프로젝트 : Carmeal
 						<a class="btn btn-primary ml-2" target="_blank" aria-label="Carmeal 프로젝트 상세 페이지 이동" href="http://d.yonsei.ac.kr/2024/portfolio/p17/">상세내용 보기</a>
 					</h2>
-					<span class="position">팀장 & 기획</span>
+					<span class="position">제품 & 서비스 기획</span>
 					<div class="mt-2">
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Context</span>
@@ -1791,7 +1827,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>4~8kWh급 이동형 공유 배터리 서비스 기획, 거주지 특화 대여/반납 UX 설계</span>
+							<span>이동형 공유 충전(배터리) 서비스 컨셉·운영 모델 기획, 빌라촌/밀집 주거지 특화 대여·반납 UX 시나리오 설계</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1825,7 +1861,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>고객 여정을 '맛보다-누리다-빠지다' 3단계로 재정의, AI 큐레이터 및 오프라인 경험 설계</span>
+							<span>서점 CX를 3단계 여정으로 재설계(맛보다-누리다-빠지다), AI 큐레이션/오프라인 체험 공간 컨셉과 접점 설계</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1856,7 +1892,7 @@
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>'콘텐츠성' 정성 지표 개발, 오프라인 아케이드 컨셉 스토어를 통한 탐색 경험 설계</span>
+							<span>IP 평가 모델 ‘콘텐츠성’ 지표 설계, 오프라인 아케이드 컨셉 스토어로 탐색/발견 경험 기획(KPI/OKR 포함)</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -1879,15 +1915,15 @@
 					<h2>군 창업경진대회: 네모 (NAIMO)
 						<a class="btn btn-outline-secondary ml-2" target="_blank" aria-label="군 창업경진대회 관련 PDF 다운로드" href="https://github.com/EnterDevelope/web-porfolio/raw/1a3b3a2977f3d1e65dcf6670cb617e377d788e5e/%EC%B0%BD%EC%97%85%EA%B2%BD%EC%A7%84%EB%8C%80%ED%9A%8C%20%EC%A0%91%EC%88%98%20%EB%AC%B8%EC%84%9C.pdf">PDF 다운로드</a>
 					</h2>
-					<span class="position">팀장 & PO</span>
+					<span class="position">PO & 창업경진대회</span>
 					<div class="mt-2">
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Context</span>
-							<span>군 복무 중 발견한 네일아트 시장의 가격 불투명성과 예약 비효율</span>
+							<span>군 복무 중 시작한 프로젝트, 네일아트 시장의 가격 불투명성과 예약 비효율</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Action</span>
-							<span>역경매 방식의 견적 요청 시스템 도입, 97명 타겟 유저 검증, Flutter/Firebase MVP 기획</span>
+							<span>역경매형 견적 요청 O2O 앱 MVP 기획(Flutter/Firebase), 97명 타겟 설문으로 문제/가치 검증 및 초기 실행안 수립</span>
 						</div>
 						<div class="d-flex mb-2">
 							<span class="badge badge-light border mr-2" style="min-width: 70px; height: fit-content; color: #333;">Result</span>
@@ -2054,7 +2090,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-7 ftco-animate text-center">
-					<h2 style="white-space: nowrap;">빠르게 성장하며 일하겠습니다</h2>
+					<h2>빠르게 성장하며 일하겠습니다</h2>
 					<p></p>
 				</div>
 			</div>

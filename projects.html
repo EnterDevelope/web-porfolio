@@ -41,15 +41,39 @@
         }
 
         .navbar {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            padding: 0.9rem 0;
+            position: relative;
         }
 
         .navbar-brand {
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
             color: var(--primary-blue);
-            font-size: 1.5rem;
+            font-size: 22px;
+            text-decoration: none;
+        }
+
+        .navbar-brand:hover {
+            color: var(--primary-blue-dark);
+            text-decoration: none;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
+        }
+
+        .navbar-brand:focus-visible {
+            outline: 3px solid rgba(0, 123, 255, 0.35);
+            outline-offset: 3px;
         }
 
         .back-btn {
@@ -108,21 +132,54 @@
         }
 
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            position: relative;
+            background-image: url('images/bg_1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
-            padding: 4rem 0;
+            padding: 5rem 0;
             text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 123, 255, 0.88), rgba(0, 86, 179, 0.88));
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         .hero-section h1 {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-section h1::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -12px;
+            width: 56px;
+            height: 3px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.85);
         }
 
         .hero-section p {
             font-size: 1.2rem;
             opacity: 0.9;
+            margin-top: 18px;
         }
 
         .container {
@@ -252,6 +309,22 @@
             color: var(--muted-text);
         }
 
+        .video-embed {
+            margin-top: 1.25rem;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+        }
+
         @media (max-width: 768px) {
             .hero-section h1 {
                 font-size: 2rem;
@@ -272,7 +345,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">김우현 Portfolio</a>
+            <a class="navbar-brand" href="index.html" aria-label="메인으로 돌아가기">
+                <i class="ion-ios-arrow-back" aria-hidden="true"></i>
+            </a>
         </div>
     </nav>
 
@@ -399,6 +474,16 @@
                         <h5>🔧 기술적 구현</h5>
                         <p>Unity와 C#을 기반으로, Dialogue System for Unity를 활용해 분기형 대사와 선택지를 구현했고, Timeline과 Cinemachine을 통해 컷신과 시네마틱 연출을 설계했습니다. 주요 스크립트(DialogueManager, TimelineDirector)를 직접 작성하며 프로젝트의 안정성을 확보했습니다.</p>
                     </div>
+
+                    <div class="video-embed" aria-label="Wayfinder 유튜브 영상">
+                        <iframe
+                            src="https://www.youtube.com/embed/3UjHw5VAJ2g?si=lEMfkHyY2NHsM117"
+                            title="Wayfinder YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
                     
                     <div class="tech-stack">
                         <span class="tech-tag">Unity</span>
@@ -475,6 +560,16 @@
                         <h5>🎨 사용자 경험</h5>
                         <p>사용자는 직접 글을 쓰지 않아도 선택지나 음성을 통해 손쉽게 감정을 표현할 수 있습니다. 대화가 끝나면 "상황-생각-감정"을 분리해 보여주는 리포트를 제공해 자기 성찰을 돕고, 여러 AI 캐릭터 중 원하는 말투와 성격을 선택할 수 있게 하여 친근감을 높였습니다.</p>
                     </div>
+
+                    <div class="video-embed" aria-label="POPPLE 유튜브 영상">
+                        <iframe
+                            src="https://www.youtube.com/embed/nas7e3BTlhc?si=Bsrz2aPGbPzkpMJz"
+                            title="POPPLE YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            loading="lazy"></iframe>
+                    </div>
                     
                     <div class="tech-stack">
                         <span class="tech-tag">UX/UI 디자인</span>
@@ -509,6 +604,16 @@
                     <div class="highlight-box">
                         <h5>🔧 기술적 특징</h5>
                         <p>4~8kWh 배터리를 기반으로 1시간 충전 시 약 64km 주행이 가능하여, 하루 이틀 통근에 충분한 실용성을 확보했습니다. 제품 설계 단계에서는 공과대학 교수님의 자문을 받아 기술적 타당성을 검증하며 현실성을 높였습니다.</p>
+                    </div>
+
+                    <div class="video-embed" aria-label="Carmeal 유튜브 영상">
+                        <iframe
+                            src="https://www.youtube.com/embed/R7ShXxnPnI4?si=SS3b-FSCnzsxkikj"
+                            title="Carmeal YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            loading="lazy"></iframe>
                     </div>
                     
                     <div class="tech-stack">
