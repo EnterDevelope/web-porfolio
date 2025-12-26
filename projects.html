@@ -59,13 +59,21 @@
             background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
             color: white;
             border: none;
-            padding: 1rem 1.5rem;
-            border-radius: 50px;
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            border-radius: 9999px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: width 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
             box-shadow: 0 5px 20px rgba(0, 123, 255, 0.3);
             font-weight: 600;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .back-btn:hover {
@@ -74,6 +82,29 @@
             text-decoration: none;
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
+        }
+
+        .back-btn:focus-visible {
+            outline: 3px solid rgba(255, 255, 255, 0.85);
+            outline-offset: 3px;
+        }
+
+        .back-btn .btn-text {
+            display: none;
+        }
+
+        @media (min-width: 769px) {
+            .back-btn:hover,
+            .back-btn:focus-visible {
+                width: 180px;
+                padding: 0 16px;
+                justify-content: center;
+            }
+
+            .back-btn:hover .btn-text,
+            .back-btn:focus-visible .btn-text {
+                display: inline;
+            }
         }
 
         .hero-section {
@@ -105,6 +136,7 @@
             margin-bottom: 2rem;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            scroll-margin-top: 90px;
         }
 
         .project-card:hover {
@@ -256,7 +288,7 @@
     <section class="py-5">
         <div class="container">
             <!-- 팀스파르타 인턴 -->
-            <div class="project-card">
+            <div class="project-card" id="project-teamsparta">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">팀스파르타 인턴</h3>
@@ -309,7 +341,7 @@
             </div>
 
             <!-- Exam AI -->
-            <div class="project-card">
+            <div class="project-card" id="project-exam-ai">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">Exam AI</h3>
@@ -344,7 +376,7 @@
             </div>
 
             <!-- Wayfinder -->
-            <div class="project-card">
+            <div class="project-card" id="project-wayfinder">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">Wayfinder</h3>
@@ -379,7 +411,7 @@
             </div>
 
             <!-- ID Linker -->
-            <div class="project-card">
+            <div class="project-card" id="project-id-linker">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">ID Linker</h3>
@@ -420,7 +452,7 @@
             </div>
 
             <!-- POPPLE -->
-            <div class="project-card">
+            <div class="project-card" id="project-popple">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">POPPLE</h3>
@@ -455,7 +487,7 @@
             </div>
 
             <!-- Carmeal -->
-            <div class="project-card">
+            <div class="project-card" id="project-carmeal">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">Carmeal</h3>
@@ -490,7 +522,7 @@
             </div>
 
             <!-- 영풍문고 산학협력 프로젝트 -->
-            <div class="project-card">
+            <div class="project-card" id="project-youngpoong">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">영풍문고 산학협력 프로젝트</h3>
@@ -525,7 +557,7 @@
             </div>
 
             <!-- 핸드허그 산학협력 프로젝트 -->
-            <div class="project-card">
+            <div class="project-card" id="project-jellycrew">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">핸드허그 산학협력 프로젝트</h3>
@@ -560,7 +592,7 @@
             </div>
 
             <!-- 네모 -->
-            <div class="project-card">
+            <div class="project-card" id="project-naimo">
                 <div class="project-header">
                     <div>
                         <h3 class="project-title">네모 (NAIMO)</h3>
@@ -598,7 +630,8 @@
 
     <!-- Floating Back Button -->
     <a href="index.html" class="back-btn" data-ga-event="back_to_main" data-ga-category="navigation" data-ga-label="메인으로 돌아가기">
-        <i class="ion-ios-arrow-back"></i> 메인으로 돌아가기
+        <i class="ion-ios-arrow-back" aria-hidden="true"></i>
+        <span class="btn-text">메인으로 돌아가기</span>
     </a>
 
     <!-- Footer -->

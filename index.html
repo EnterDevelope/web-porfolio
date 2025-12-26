@@ -188,6 +188,168 @@
 		#navi ul li a.external-link {
 			pointer-events: auto;
 		}
+
+		/* 사이드 내비: 프로젝트 상세 CTA 격상 */
+		#navi ul li a.external-link.nav-cta {
+			background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+			color: white;
+			box-shadow: 0 6px 18px rgba(0, 123, 255, 0.25);
+			font-weight: 700;
+		}
+
+		#navi ul li a.external-link.nav-cta:hover {
+			background: linear-gradient(135deg, var(--primary-blue-dark), #004085);
+			color: white;
+			transform: translateX(5px) translateY(-1px);
+			box-shadow: 0 10px 24px rgba(0, 123, 255, 0.35);
+		}
+
+		#navi ul li a.external-link.nav-cta::after {
+			opacity: 0.9;
+			margin-left: 6px;
+		}
+
+		/* Internship 카드 액션: 프로젝트 상세 페이지의 해당 섹션으로 점프 */
+		#page-4 .internship-card-actions {
+			margin-top: 14px;
+			display: flex;
+			justify-content: flex-end;
+			width: 100%;
+		}
+
+		#page-4 .internship-card-actions .btn {
+			border-radius: 9999px;
+			font-weight: 700;
+			padding: 10px 14px;
+		}
+
+		/* Projects: 요약 그리드 */
+		#page-5 .projects-summary-header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 12px;
+			flex-wrap: wrap;
+			margin-top: 8px;
+			margin-bottom: 14px;
+		}
+
+		#page-5 .projects-summary-grid {
+			display: grid;
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 18px;
+		}
+
+		@media (max-width: 1200px) {
+			#page-5 .projects-summary-grid {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+		}
+
+		@media (max-width: 768px) {
+			#page-5 .projects-summary-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		#page-5 .projects-summary-grid .resume-wrap {
+			margin-bottom: 0;
+			height: 100%;
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: flex-start !important;
+		}
+
+		#page-5 .projects-summary-grid .resume-wrap .text {
+			padding-left: 0 !important;
+			width: 100%;
+		}
+
+		#page-5 .projects-summary-grid .resume-wrap .icon {
+			margin-bottom: 12px;
+		}
+
+		/* 메인 Projects는 요약만: 미디어/인라인 버튼은 숨김 */
+		#page-5 .projects-summary-grid .resume-wrap .project,
+		#page-5 .projects-summary-grid .resume-wrap iframe,
+		#page-5 .projects-summary-grid .resume-wrap h2 a.btn {
+			display: none !important;
+		}
+
+		/* 요약(1~2줄): 기존 Context/Action 텍스트를 그대로 사용하되 카드에서만 축약 노출 */
+		#page-5 .projects-summary-grid .resume-wrap .mt-2 {
+			display: block !important;
+			margin-top: 10px;
+		}
+
+		#page-5 .projects-summary-grid .resume-wrap .mt-2 .d-flex.mb-2 {
+			display: none !important;
+			align-items: flex-start;
+			gap: 10px;
+		}
+
+		/* Context 1줄 + Action 1줄(총 2줄) */
+		#page-5 .projects-summary-grid .resume-wrap .mt-2 .d-flex.mb-2:nth-of-type(1),
+		#page-5 .projects-summary-grid .resume-wrap .mt-2 .d-flex.mb-2:nth-of-type(2) {
+			display: flex !important;
+		}
+
+		#page-5 .projects-summary-grid .resume-wrap .mt-2 .d-flex.mb-2 span:last-child {
+			font-size: 0.92rem;
+			line-height: 1.35;
+			white-space: normal;
+			overflow: visible;
+			display: inline;
+			word-break: keep-all;
+		}
+
+		/* 데스크톱: 카드 폭이 넓어지는 만큼 요약 폰트는 조금 더 안정적으로 */
+		@media (min-width: 1200px) {
+			#page-5 .projects-summary-grid .resume-wrap .mt-2 .d-flex.mb-2 span:last-child {
+				font-size: 0.95rem;
+			}
+		}
+
+		#page-5 .projects-summary-grid .project-card-actions {
+			margin-top: 14px;
+			display: flex;
+			justify-content: flex-end;
+			width: 100%;
+		}
+
+		#page-5 .projects-summary-grid .project-card-actions .btn {
+			border-radius: 9999px;
+			font-weight: 700;
+			padding: 10px 14px;
+		}
+
+		/* 와이드 화면: #resume-section 전용으로 가용 폭 확장(다른 섹션은 기존 읽기 폭 유지) */
+		@media (min-width: 1200px) {
+			#resume-section > .container {
+				max-width: 1400px;
+				padding-left: 24px;
+				padding-right: 24px;
+			}
+		}
+
+		@media (min-width: 1600px) {
+			#resume-section > .container {
+				max-width: 1560px;
+			}
+		}
+
+		/* #resume-section: 좌측 내비 폭을 고정해 본문(카드) 가용 폭을 확보 */
+		@media (min-width: 992px) {
+			#resume-section .row > .col-md-3 {
+				flex: 0 0 260px;
+				max-width: 260px;
+			}
+
+			#resume-section .row > .col-md-9 {
+				flex: 1 1 auto;
+				max-width: calc(100% - 260px);
+			}
+		}
 		
 		/* 반응형 개선 */
 		@media (max-width: 768px) {
@@ -442,18 +604,11 @@
 		}
 		
 		.skill-dots .dot::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-			transition: left 0.5s ease;
+			content: none;
 		}
 		
 		.skill-dots .dot:hover::before {
-			left: 100%;
+			left: -100%;
 		}
 		
 		/* 타이핑 애니메이션 */
@@ -730,21 +885,29 @@
 			flex-direction: column;
 			gap: 12px;
 			z-index: 9999;
+			align-items: flex-end;
+		}
+
+		/* 플로팅 버튼이 하단 콘텐츠를 가리지 않도록 안전 여백 확보 */
+		body {
+			padding-bottom: 120px;
 		}
 		
 		.floating-btn {
 			display: flex;
 			align-items: center;
 			gap: 8px;
-			padding: 12px 16px;
-			border-radius: 25px;
+			padding: 0;
+			border-radius: 9999px;
 			text-decoration: none;
 			font-weight: 600;
 			font-size: 14px;
-			transition: all 0.3s ease;
+			transition: width 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-			min-width: 120px;
 			justify-content: center;
+			width: 52px;
+			height: 52px;
+			white-space: nowrap;
 		}
 		
 		.email-btn {
@@ -800,7 +963,7 @@
 		}
 		
 		.floating-btn .btn-text {
-			transition: opacity 0.3s ease;
+			display: none;
 		}
 		
 		/* PM 적합도 분석 모달 */
@@ -1001,10 +1164,8 @@
 		/* 모바일에서 텍스트 숨김 */
 		@media (max-width: 768px) {
 			.floating-btn {
-				min-width: 50px;
 				width: 50px;
 				height: 50px;
-				border-radius: 50%;
 				padding: 0;
 				justify-content: center;
 			}
@@ -1034,8 +1195,16 @@
 		
 		/* 호버 시 텍스트 표시 (데스크톱) */
 		@media (min-width: 769px) {
-			.floating-btn:hover .btn-text {
-				opacity: 1;
+			.floating-btn:hover,
+			.floating-btn:focus-visible {
+				width: 160px;
+				padding: 12px 16px;
+				justify-content: center;
+			}
+
+			.floating-btn:hover .btn-text,
+			.floating-btn:focus-visible .btn-text {
+				display: inline;
 			}
 		}
 	</style>
@@ -1189,7 +1358,7 @@
 							<li><a href="#page-3" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Skills">Skills</a></li>
 							<li><a href="#page-4" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Internship">Internship</a></li>
 							<li><a href="#page-5" data-ga-event="navigate_section" data-ga-category="navigation" data-ga-label="Projects">Projects</a></li>
-							<li><a href="javascript:void(0)" class="external-link" onclick="window.location.href='projects.html';" data-ga-event="view_projects_page" data-ga-category="navigation" data-ga-label="프로젝트 상세">프로젝트 상세</a></li>
+							<li><a href="javascript:void(0)" class="external-link nav-cta" onclick="window.location.href='projects.html';" data-ga-event="view_projects_page" data-ga-category="navigation" data-ga-label="프로젝트 상세 보기">프로젝트 상세 보기</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -1447,12 +1616,36 @@
 							<span>고객 기대와 비즈니스 목표를 일치시키는 프로덕트 설계의 중요성</span>
 						</div>
 					</div>
+					<div class="internship-card-actions">
+						<a href="projects.html#project-teamsparta"
+							class="btn btn-primary"
+							aria-label="인턴십 프로젝트 상세 페이지로 이동"
+							data-ga-event="view_projects_page"
+							data-ga-category="internship"
+							data-ga-label="팀스파르타 인턴 상세 보기">
+							인턴 과정 상세 보기
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div id="page-5" class="page five fade-in-up">
 			<h2 id="projects-section" class="heading">Projects</h2>
+
+			<div class="projects-summary-header">
+				<p class="text-muted mb-0">메인에서는 요약만 확인하고, 상세는 프로젝트 페이지에서 확인할 수 있어요.</p>
+				<a href="projects.html"
+					class="btn btn-primary"
+					aria-label="프로젝트 상세 페이지로 이동"
+					data-ga-event="view_projects_page"
+					data-ga-category="projects"
+					data-ga-label="전체 프로젝트 상세 보기">
+					전체 프로젝트 상세 보기
+				</a>
+			</div>
+
+			<div class="projects-summary-grid">
 			
 			<div class="resume-wrap d-flex ftco-animate">
 				<div class="icon d-flex align-items-center justify-content-center">
@@ -1706,6 +1899,7 @@
 						</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
 
@@ -2022,6 +2216,9 @@
 			
 			// 카운터 애니메이션
 			animateCounters();
+
+			// Projects 요약 카드 액션(상세 페이지 유도) 추가
+			initProjectsSummaryCards();
 		});
 		
 		// 프로그레스 바 애니메이션
@@ -2054,6 +2251,50 @@
 					}
 					counter.textContent = Math.floor(current);
 				}, 16);
+			});
+		}
+
+		// Projects 요약 카드 액션(상세 페이지 유도) 추가
+		function initProjectsSummaryCards() {
+			const cards = document.querySelectorAll('#page-5 .projects-summary-grid .resume-wrap');
+			if (!cards.length) return;
+
+			const titleToAnchor = {
+				'Exam AI': 'project-exam-ai',
+				'Wayfinder': 'project-wayfinder',
+				'ID Linker': 'project-id-linker',
+				'졸업 프로젝트 : POPPLE': 'project-popple',
+				'졸업 프로젝트 : Carmeal': 'project-carmeal',
+				'(주)영풍문고 산학협력 프로젝트': 'project-youngpoong',
+				"(주)핸드허그 'JellyCrew' 산학협력": 'project-jellycrew',
+				'군 창업경진대회: 네모 (NAIMO)': 'project-naimo'
+			};
+
+			cards.forEach(card => {
+				if (card.querySelector('.project-card-actions')) return;
+
+				const titleEl = card.querySelector('h2');
+				const rawTitle = titleEl?.childNodes?.[0]?.textContent || titleEl?.textContent || '프로젝트';
+				const title = rawTitle.replace(/\s+/g, ' ').trim();
+				const anchor = titleToAnchor[title];
+				const href = anchor ? `projects.html#${anchor}` : 'projects.html';
+
+				const actions = document.createElement('div');
+				actions.className = 'project-card-actions';
+				actions.innerHTML = `
+					<a href="${href}"
+						class="btn btn-primary"
+						aria-label="${title} 프로젝트 상세 페이지로 이동"
+						data-ga-event="view_projects_page"
+						data-ga-category="projects"
+						data-ga-label="${title} 상세 보기">
+						프로젝트 상세 보기
+					</a>
+				`;
+
+				const text = card.querySelector('.text');
+				if (!text) return;
+				text.appendChild(actions);
 			});
 		}
 		
@@ -2138,35 +2379,7 @@
 		}
 		
 		// 스킬 레벨 인터랙션
-		function initSkillInteractions() {
-			const skillDots = document.querySelectorAll('.skill-dots .dot');
-			skillDots.forEach(dot => {
-				dot.addEventListener('click', function() {
-					// 스킬 레벨 클릭 시 상세 정보 표시
-					const skillName = this.closest('.skill-item').querySelector('.skill-name').textContent;
-					showSkillDetails(skillName);
-				});
-			});
-		}
-		
-		function showSkillDetails(skillName) {
-			const details = {
-				'Azure OpenAI, MCP': 'AI 모델 통합 및 프롬프트 엔지니어링 경험',
-				'Cursor, Supabase': '개발 도구 및 데이터베이스 관리',
-				'SQL(MySQL), Redash': '데이터 쿼리 및 시각화',
-				'Python': '데이터 분석 및 자동화 스크립트',
-				'Notion, Slack': '팀 협업 및 문서 관리',
-				'Jira': '프로젝트 관리 및 이슈 트래킹',
-				'Figma': 'UI/UX 디자인 및 프로토타이핑',
-				'Adobe XD': '디자인 시스템 구축',
-				'GA4': '웹 분석 및 사용자 행동 추적',
-				'Amplitude': '제품 분석 및 사용자 여정 분석',
-				'JS, TS, React, Next.js': '프론트엔드 개발',
-				'Flutter': '크로스 플랫폼 모바일 앱 개발'
-			};
-			
-			alert(`${skillName}\n\n${details[skillName] || '상세 정보가 없습니다.'}`);
-		}
+		// (정적화) Skills는 정보 표시만 제공하며, 클릭 상호작용은 제공하지 않음
 		
 		// 로딩 스켈레톤
 		function showLoadingSkeleton() {
@@ -2200,7 +2413,6 @@
 			init3DCards();
 			initModal();
 			initTooltips();
-			initSkillInteractions();
 			initAdvancedAnimations();
 		}
 		
@@ -2253,12 +2465,6 @@
 					e.preventDefault();
 					const progressElement = document.getElementById('scroll-progress');
 					progressElement.style.display = progressElement.style.display === 'none' ? 'block' : 'none';
-				}
-				
-				// Ctrl/Cmd + K: 스킬 상세 정보
-				if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-					e.preventDefault();
-					showSkillDetails('전체 스킬');
 				}
 				
 				// Escape: 모달 닫기
@@ -2321,7 +2527,6 @@
 			init3DCards();
 			initModal();
 			initTooltips();
-			initSkillInteractions();
 			initAdvancedAnimations();
 			initKeyboardShortcuts();
 			optimizePerformance();
