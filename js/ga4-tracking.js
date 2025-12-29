@@ -63,37 +63,66 @@ class GA4Tracker {
             });
         }
 
-        // Amplitude 이벤트 전송 (초기화 대기)
+        // Amplitude 이벤트 전송
         const sendAmplitudeEvent = () => {
-            if (typeof amplitude !== 'undefined' && amplitude.getInstance) {
-                try {
-                    const amplitudeInstance = amplitude.getInstance();
-                    if (amplitudeInstance) {
-                        const eventProperties = {
-                            category: parameters.category || 'engagement',
-                            label: parameters.label || '',
-                            value: parameters.value || 0,
-                            page_url: window.location.href,
-                            page_title: document.title,
-                            ...parameters
-                        };
-                        amplitudeInstance.logEvent(eventName, eventProperties);
-                    }
-                } catch (error) {
-                    console.warn('Amplitude event tracking error:', error);
+            try {
+                // Amplitude SDK 확인
+                if (typeof window.amplitude === 'undefined' && typeof amplitude === 'undefined') {
+                    console.warn('[Amplitude] SDK not loaded yet');
+                    return;
                 }
+
+                // Amplitude 인스턴스 가져오기 (여러 방식 지원)
+                let amplitudeInstance = null;
+                
+                if (typeof window.amplitude !== 'undefined') {
+                    // window.amplitude 직접 사용
+                    if (window.amplitude.getInstance) {
+                        amplitudeInstance = window.amplitude.getInstance();
+                    } else if (window.amplitude.logEvent) {
+                        amplitudeInstance = window.amplitude;
+                    }
+                } else if (typeof amplitude !== 'undefined') {
+                    // 전역 amplitude 사용
+                    if (amplitude.getInstance) {
+                        amplitudeInstance = amplitude.getInstance();
+                    } else if (amplitude.logEvent) {
+                        amplitudeInstance = amplitude;
+                    }
+                }
+
+                if (amplitudeInstance && amplitudeInstance.logEvent) {
+                    const eventProperties = {
+                        category: parameters.category || 'engagement',
+                        label: parameters.label || '',
+                        value: parameters.value || 0,
+                        page_url: window.location.href,
+                        page_title: document.title,
+                        ...parameters
+                    };
+                    
+                    amplitudeInstance.logEvent(eventName, eventProperties);
+                    console.log('[Amplitude] Event sent:', eventName, eventProperties);
+                } else {
+                    console.warn('[Amplitude] Instance not available or logEvent method not found');
+                }
+            } catch (error) {
+                console.error('[Amplitude] Event tracking error:', error);
             }
         };
 
-        // Amplitude 초기화 대기 (최대 3초)
-        if (typeof amplitude === 'undefined') {
+        // Amplitude 초기화 대기 (최대 5초)
+        if (typeof window.amplitude === 'undefined' && typeof amplitude === 'undefined') {
             let attempts = 0;
+            const maxAttempts = 50; // 5초
             const checkAmplitude = setInterval(() => {
                 attempts++;
-                if (typeof amplitude !== 'undefined' || attempts > 30) {
+                if ((typeof window.amplitude !== 'undefined' || typeof amplitude !== 'undefined') || attempts >= maxAttempts) {
                     clearInterval(checkAmplitude);
-                    if (typeof amplitude !== 'undefined') {
+                    if (typeof window.amplitude !== 'undefined' || typeof amplitude !== 'undefined') {
                         sendAmplitudeEvent();
+                    } else {
+                        console.warn('[Amplitude] SDK not loaded after', maxAttempts * 100, 'ms');
                     }
                 }
             }, 100);

@@ -18,15 +18,38 @@
 	<!-- Amplitude -->
 	<script src="https://cdn.amplitude.com/script/1b2fd6ae0434f581819316b4b44b0275.js"></script>
 	<script>
-		if (typeof amplitude !== 'undefined') {
-			if (typeof window.sessionReplay !== 'undefined' && window.sessionReplay.plugin) {
-				amplitude.add(window.sessionReplay.plugin({sampleRate: 1}));
+		(function() {
+			// Amplitude 스크립트 로드 대기
+			function initAmplitude() {
+				if (typeof window.amplitude !== 'undefined' || typeof amplitude !== 'undefined') {
+					const amp = window.amplitude || amplitude;
+					
+					// Session Replay 플러그인 추가
+					if (typeof window.sessionReplay !== 'undefined' && window.sessionReplay.plugin && amp.add) {
+						amp.add(window.sessionReplay.plugin({sampleRate: 1}));
+					}
+					
+					// Amplitude 초기화
+					if (amp.init) {
+						amp.init('1b2fd6ae0434f581819316b4b44b0275', {
+							"fetchRemoteConfig": true,
+							"autocapture": true
+						});
+						console.log('[Amplitude] Initialized successfully');
+					}
+				} else {
+					// 스크립트가 아직 로드되지 않음, 재시도
+					setTimeout(initAmplitude, 100);
+				}
 			}
-			amplitude.init('1b2fd6ae0434f581819316b4b44b0275', {
-				"fetchRemoteConfig": true,
-				"autocapture": true
-			});
-		}
+			
+			// DOM 로드 후 초기화 시도
+			if (document.readyState === 'loading') {
+				document.addEventListener('DOMContentLoaded', initAmplitude);
+			} else {
+				initAmplitude();
+			}
+		})();
 	</script>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
